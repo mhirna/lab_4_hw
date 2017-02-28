@@ -66,6 +66,7 @@ class Authenticator:
         self.current_username = ''
 
     def add_user(self, username, password):
+        # Add a user
         if username in self.users:
             raise UsernameAlreadyExists(username)
         if len(password) < 6:
@@ -73,6 +74,7 @@ class Authenticator:
         self.users[username] = User(username, password)
 
     def login(self, username, password):
+        # Log in
         try:
             user = self.users[username]
         except KeyError:
@@ -86,6 +88,7 @@ class Authenticator:
         return True
 
     def is_logged_in(self, username):
+        # True if a user is logged in
         if username in self.users:
             return self.users[username].is_logged_in
         return False
@@ -108,7 +111,7 @@ class Authorizor:
             raise PermissionError("Permission Exists")
 
     def permit_user(self, perm_name, username):
-        '''Grant the given permission to the user'''
+        # Grant the given permission to the user
         try:
             perm_set = self.permissions[perm_name]
         except KeyError:

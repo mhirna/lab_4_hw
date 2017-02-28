@@ -11,26 +11,30 @@ class GameAuth:
         self.authorizor.permit_user('admin', self.__admin)
 
     def login(self):
+        # Log in
         return self.authorizor.authenticator.login(input('Login: '),
-                                                        input('Password: '))
+                                                   input('Password: '))
 
     def add_user(self):
+        # Add user
         username = self.authorizor.authenticator.current_username
         if self.authorizor.check_permission('admin', username):
             self.authorizor.authenticator.add_user(input('New user login: '),
                                                    input('New user password: '))
 
     def permit_user(self):
+        # Permit user
         username = self.authorizor.authenticator.current_username
         if self.authorizor.check_permission('admin', username):
             self.authorizor.permit_user(input('Type of permission: '),
-                                                   input('Username: '))
+                                        input('Username: '))
 
     def play(self):
-        # Insert your game here
+        # Insert battleship here
         print('We gonna make this game great again!')
 
     def auth_system(self):
+        # All methods for authorization called here
         type_operation = {'add user', 'permit user', 'play', 'login'}
         print('To exit press Enter.')
         while True:
